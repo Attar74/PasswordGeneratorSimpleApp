@@ -1,30 +1,46 @@
-<h1>Password Generator</h1>
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+  <div class="bg-light p-5 shadow bg-body rounded">
+    <h1 class="text-success mb-5">Password Generator</h1>
+    <div>
+      <label>Enter Password Length:</label>
+      <input placeholder="Password Length" class="form-control" type="number" (input)="onChangeLength($event.target.value)"/>
+    </div>
+    <div class="mt-2">
+      <div class="m-2">
+        <div class="mr-5">
+          <input class="mr-1" type="checkbox" (change) = "onChangeLetters()">
+          <label>Include Letters</label>
+        </div>
+    
+        <div class="mr-5">
+          <input class="mr-1" type="checkbox" (change) = "onChangeNumbers()">
+          <label>Include Numbers</label>
+        </div>
+    
+        <div>
+          <input class="mr-1" type="checkbox" (change) = "onChangeSpcialCharacters()">
+          <label>Include Special Characters</label>
+        </div>
+      </div>
+    </div>
+   
+    <div class="mb-2">
+      <button [disabled]="isDisabled()" class="btn btn-primary w-100" (click) = "onButtonClick()">Generate!</button>
+    </div>
 
-<div>
-  <label>Enter Password Length</label>
-  <input type="text" #length/>
+    <div class="text-center p-2" *ngIf="password">
+        <label class="h3">Your Password</label>
+        <div class="input-group mb-3">
+          <input class="form-control text-center" [value] = "getPassword()" />
+          <button (click)="copyPassword()" class="input-group-text" id="basic-addon1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+            </svg>
+          </button>
+        </div>
+    </div>
+
+  </div>
 </div>
 
-<div>
-  <input type="checkbox" #ch1>
-  <label>Use Letters</label>
-</div>
-
-<div>
-  <input type="checkbox" #ch2>
-  <label>Use Numbers</label>
-</div>
-
-<div>
-  <input type="checkbox" #ch3>
-  <label>Use Special Characters</label>
-</div>
-
-<div>
-  <button (click) = "onButtonClick(length, ch1, ch2, ch3)">Generate!</button>
-</div>
-
-<div>
-  <label>Your Password</label>
-  <input [value] = "getPassword()" />
-</div>
