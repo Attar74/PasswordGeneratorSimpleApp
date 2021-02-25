@@ -1,0 +1,30 @@
+<h1>Password Generator</h1>
+
+<div>
+  <label>Enter Password Length</label>
+  <input type="text" #length/>
+</div>
+
+<div>
+  <input type="checkbox" #ch1>
+  <label>Use Letters</label>
+</div>
+
+<div>
+  <input type="checkbox" #ch2>
+  <label>Use Numbers</label>
+</div>
+
+<div>
+  <input type="checkbox" #ch3>
+  <label>Use Special Characters</label>
+</div>
+
+<div>
+  <button (click) = "onButtonClick(length, ch1, ch2, ch3)">Generate!</button>
+</div>
+
+<div>
+  <label>Your Password</label>
+  <input [value] = "getPassword()" />
+</div>
